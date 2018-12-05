@@ -37,7 +37,7 @@ const styles = theme => ({
 const MoviesScene = ({ classes, movies }) =>
   <div className={classes.root}>
     <div className={classes.grid}>
-      {movies.results.map(movie =>
+      {movies.results && movies.results.map(movie =>
         <MovieCard key={movie.id} movie={movie} />)}
     </div>
   </div>
