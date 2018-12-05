@@ -1,5 +1,7 @@
 import Movie from 'services/api/Movie'
 
+export const FIND_MOVIE = 'FIND_MOVIE'
+
 export const LOAD_MOVIES = 'LOAD_MOVIES'
 export const LOAD_MOVIES_PENDING = 'LOAD_MOVIES_PENDING'
 export const LOAD_MOVIES_REJECTED = 'LOAD_MOVIES_REJECTED'
@@ -10,4 +12,9 @@ const load = params => ({
   payload: Movie.all(params),
 })
 
-export default { load }
+const find = id => ({
+  type: FIND_MOVIE,
+  payload: id,
+})
+
+export default { load, find }

@@ -7,17 +7,21 @@ import Header from 'components/Header'
 import Container from 'components/Container'
 
 import IndexScene from 'components/IndexScene'
+import MovieScene from 'components/@movie.id/MovieScene'
 
 const LayoutScene = () =>
-  <div style={{ background: '#f2f3f5' }}>
+  <React.Fragment>
     <Background>
       <Header />
-      <Container>
-        <Switch>
-          <Route exact path="/" component={IndexScene} />
-        </Switch>
-      </Container>
+      <div style={{ paddingTop: 64 }}>
+        <Container>
+          <Switch>
+            <Route exact path="/" component={IndexScene} />
+            <Route exact path="/movie/:id" component={MovieScene} />
+          </Switch>
+        </Container>
+      </div>
     </Background>
-  </div>
+  </React.Fragment>
 
 export default withTheme(LayoutScene)

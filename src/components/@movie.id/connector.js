@@ -1,13 +1,16 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import layout from 'src/redux/layout/action'
 import movies from 'src/redux/movies/action'
 
 const initMapStateToProps = store => ({
-  movies: store.moviesReducer,
+  layout: store.layoutReducer,
+  movie: store.moviesReducer.current,
 })
 
 const initMapDispatchToProps = dispatch => ({
   actions: {
+    layout: bindActionCreators(layout, dispatch),
     movies: bindActionCreators(movies, dispatch),
   },
 })
