@@ -2,13 +2,10 @@ import React from 'react'
 import { object } from 'prop-types'
 import { withStyles } from '@material-ui/core'
 import connector from './connector'
+import Loading from '../Loading'
+import MoviesScene from './MoviesScene'
 
 const styles = theme => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    marginTop: 30,
-  },
   card: {
     padding: 20,
     height: '100%',
@@ -25,30 +22,26 @@ const styles = theme => ({
 class IndexScene extends React.Component {
   componentDidMount() {
     const { actions } = this.props
-    // actions.layout.background('/images/.jpg')
-
     document.title = 'Computools'
-
+    actions.movies.load()
   }
 
-  componentWillUnmount() {
-    const { actions } = this.props
-    actions.layout.removeBackground()
-  }
+  // componentWillUnmount() {
+  // actions.layout.background('/images/.jpg')
+  // const { actions } = this.props
+  // actions.layout.removeBackground()
+  // }
 
   render() {
-    const { classes } = this.props
-    return (
-      <div className={classes.root}>
-        Computools
-      </div>
-    )
+    const { classes, movies } = this.props
+    return movies.loading ? <Loading /> : <MoviesScene movies={movies.movies} />
   }
 }
 
 IndexScene.propTypes = {
   classes: object.isRequired,
   actions: object.isRequired,
+  movies: object.isRequired,
 }
 
 export default withStyles(styles)(connector(IndexScene))
