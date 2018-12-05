@@ -12,6 +12,7 @@ const styles = theme => ({
   grid: {
     marginTop: 0,
     margin: '80px',
+
     display: 'grid',
     gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
     gridColumnGap: '20px',
