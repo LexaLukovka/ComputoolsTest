@@ -1,5 +1,5 @@
 import React from 'react'
-import { object } from 'prop-types'
+import { array, object } from 'prop-types'
 import { withRouter } from 'react-router'
 import { Typography, withStyles } from '@material-ui/core'
 import KeyboardArrowLeftIcon from 'mdi-react/KeyboardArrowLeftIcon'
@@ -31,12 +31,12 @@ class Arrows extends React.Component {
 
   handleNext = () => {
     const { movies, movie, history } = this.props
-    const index = movies.results.findIndex(f => f.id === movie.id)
-    history.push(`/movie/${movies.results[index + 1].id}`)
+    const index = movies.findIndex(f => f.id === movie.id)
+    history.push(`/movie/${movies[index + 1].id}`)
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, movies, movie } = this.props
     return (
       <div className={classes.root}>
         <div className="flex">
@@ -44,10 +44,11 @@ class Arrows extends React.Component {
             <KeyboardArrowLeftIcon className={classes.icon} />
             <Typography color="inherit" variant="h5" style={{ alignSelf: 'center' }}>Back to list</Typography>
           </div>
+          {movies.findIndex(f => f.id === movie.id) !== (movies.length - 1) &&
           <div className={classes.block} onClick={this.handleNext}>
             <Typography color="inherit" variant="h5" style={{ alignSelf: 'center' }}>Next Movie</Typography>
             <KeyboardArrowRightIcon className={classes.icon} />
-          </div>
+          </div>}
         </div>
       </div>
     )
@@ -58,7 +59,7 @@ class Arrows extends React.Component {
 Arrows.propTypes = {
   classes: object.isRequired,
   history: object.isRequired,
-  movies: object.isRequired,
+  movies: array.isRequired,
   movie: object.isRequired,
 }
 
