@@ -18,6 +18,13 @@ class MovieScene extends React.Component {
     actions.movies.find(match.params.id)
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { actions, match } = this.props
+    if (prevProps.match.params.id !== match.params.id) {
+      actions.movies.find(match.params.id)
+    }
+  }
+
   render() {
     const { classes, movie } = this.props
     if (isEmpty(movie)) return <NotFound />
