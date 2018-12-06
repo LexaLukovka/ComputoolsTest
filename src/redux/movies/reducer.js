@@ -14,7 +14,7 @@ const moviesReducer = (state = initialState, { type, payload }) => {
 
     case FIND_MOVIE: {
       const current = state.movies.results.filter(movie => movie.id === +payload)[0]
-      LocalStorage.put('current', current)
+      if (current) LocalStorage.put('current', current)
       return {
         ...state,
         current,

@@ -3,6 +3,8 @@ import { object } from 'prop-types'
 import { withStyles } from '@material-ui/core'
 import connector from './connector'
 import Movie from './Movie'
+import NotFound from 'components/NotFound'
+import isEmpty from 'lodash/isEmpty'
 
 const styles = () => ({
   root: {
@@ -11,13 +13,15 @@ const styles = () => ({
 })
 
 class MovieScene extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     const { actions, match } = this.props
     actions.movies.find(match.params.id)
   }
 
   render() {
     const { classes, movie } = this.props
+    if (isEmpty(movie)) return <NotFound />
+
     return <div className={classes.root}>
       <Movie movie={movie} />
     </div>
