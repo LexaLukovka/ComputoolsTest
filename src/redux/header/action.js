@@ -16,11 +16,6 @@ const menu = () => ({
   },
 })
 
-export const setIcon = (icon) => ({
-  type: SET_HEADER_ICON,
-  payload: { icon },
-})
-
 const setTitle = title => ({
   type: SET_HEADER_TITLE,
   payload: { title },
@@ -30,4 +25,4 @@ const resetTitle = () => ({
   type: RESET_HEADER_TITLE,
 })
 
-export default { back, menu, setIcon, setTitle, resetTitle }
+export default { back, menu, setTitle, resetTitle }

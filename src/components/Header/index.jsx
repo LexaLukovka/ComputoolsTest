@@ -3,10 +3,8 @@ import React from 'react'
 import { object } from 'prop-types'
 import { withRouter } from 'react-router'
 import shortTitle from 'utils/shortTitle'
-import ArrowBack from 'mdi-react/ArrowBackIcon'
-import MenuIcon from 'mdi-react/MenuIcon'
 import { Link } from 'react-router-dom'
-import { AppBar, IconButton, Toolbar, Typography, withStyles } from '@material-ui/core'
+import { AppBar, Toolbar, Typography, withStyles } from '@material-ui/core'
 import connector from './connector'
 
 
@@ -25,11 +23,6 @@ const styles = theme => ({
       textAlign: 'left',
     },
   },
-  iconButton: {
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
 })
 
 class Header extends React.Component {
@@ -39,41 +32,21 @@ class Header extends React.Component {
     return history.goBack()
   }
 
-
-  renderIcon = () => {
-    const { header } = this.props
-    if (header.icon === 'back') {
-      return (
-        <a onClick={this.goBack(header.url)}>
-          <IconButton color="inherit">
-            <ArrowBack />
-          </IconButton>
-        </a>
-      )
-    }
-
-    return (
-      <a>
-        <IconButton color="inherit">
-          <MenuIcon />
-        </IconButton>
-      </a>
-    )
-  }
-
   render() {
     const { classes, header } = this.props
     return (
       <header className={classes.root}>
         <AppBar color="secondary" className={classes.appBar}>
           <Toolbar className={classes.toolbar}>
-            <div className={classes.iconButton}>
-              {this.renderIcon()}
-            </div>
 
             <Typography variant="h6" color="inherit" className={classes.title}>
               <Link to={header.link}>{shortTitle(header.title)}</Link>
             </Typography>
+
+            <Typography variant="h6" color="inherit" className={classes.title}>
+              <Link to="/favorite">Favorite</Link>
+            </Typography>
+
 
           </Toolbar>
         </AppBar>

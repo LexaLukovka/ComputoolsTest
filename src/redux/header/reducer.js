@@ -5,7 +5,7 @@ import {
 } from './action'
 
 const initialState = {
-  title: 'Computools',
+  title: 'Movies',
   link: '/',
   url: null,
 }

@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography/Typography'
 
 const styles = {
   root: {
-    paddingTop: 20,
+    paddingTop: 50,
   },
 }
 

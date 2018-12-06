@@ -8,13 +8,14 @@ const initialState = {
   favorite: LocalStorage.get('favorite') || [],
   current: LocalStorage.get('current') || null,
   movies: LocalStorage.get('movies') || {},
+  allMovies: LocalStorage.get('allMovies') || [],
 }
 
 const moviesReducer = (state = initialState, { type, payload }) => {
   switch (type) {
 
     case FIND_MOVIE: {
-      const current = state.movies.results.filter(movie => movie.id === +payload)[0]
+      const current = state.allMovies.filter(movie => movie.id === +payload)[0]
       if (current) LocalStorage.put('current', current)
       return {
         ...state,
@@ -26,7 +27,7 @@ const moviesReducer = (state = initialState, { type, payload }) => {
       const favorite = [...state.favorite]
       const index = favorite.findIndex(f => f.id === payload.id)
       if (index < 0) {
-        favorite.push(payload)
+        favorite.unshift(payload)
         LocalStorage.put('favorite', favorite)
       } else {
         favorite.splice(index, 1)
@@ -54,12 +55,20 @@ const moviesReducer = (state = initialState, { type, payload }) => {
       }
 
     case LOAD_MOVIES_FULFILLED: {
+      const allMovies = [...state.allMovies]
+
+      if (allMovies.findIndex(movies => movies.id === payload.results[0].id) < 0) {
+        payload.results.map(movie => allMovies.push(movie))
+      }
+
       LocalStorage.put('movies', payload)
       LocalStorage.put('pages', payload.total_pages)
+      LocalStorage.put('allMovies', allMovies)
       return {
         ...state,
         loading: false,
         movies: payload,
+        allMovies,
         pages: payload.total_pages,
       }
     }

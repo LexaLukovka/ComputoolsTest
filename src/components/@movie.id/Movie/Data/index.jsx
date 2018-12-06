@@ -2,7 +2,7 @@ import React from 'react'
 import { array, object } from 'prop-types'
 import { Divider, Grid, Typography, withStyles } from '@material-ui/core'
 import Rating from './Rating'
-import Favorite from './Favorite'
+import FavoriteAction from './FavoriteAction'
 import connector from '../../connector'
 
 const styles = theme => ({
@@ -26,7 +26,7 @@ const styles = theme => ({
 const Data = ({ classes, movie }) =>
   <div className={classes.root}>
     <Grid container justify="flex-end">
-      <Favorite />
+      <FavoriteAction />
     </Grid>
     <Typography color="inherit" variant="h4">{movie.title}</Typography>
     <Rating

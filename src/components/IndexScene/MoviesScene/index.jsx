@@ -1,20 +1,19 @@
 import React from 'react'
-import { object } from 'prop-types'
+import { array, object } from 'prop-types'
 import { withStyles } from '@material-ui/core'
 import MovieCard from './MovieCard'
 import Pages from './Pages'
-import isEmpty from 'lodash/isEmpty'
 
 const styles = theme => ({
   root: {
     marginTop: 64,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
   },
   grid: {
     marginTop: 0,
     margin: 90,
+    justifyContent: 'center',
 
     display: 'grid',
     gridTemplateColumns: '342px 342px 342px 342px 342px',
@@ -46,16 +45,17 @@ const styles = theme => ({
 const MoviesScene = ({ classes, movies }) =>
   <div className={classes.root}>
     <div className={classes.grid}>
-      {!isEmpty(movies.results) &&
-      movies.results.map(movie =>
+      {movies.map(movie =>
         <MovieCard key={movie.id} movie={movie} />)}
     </div>
     <Pages />
   </div>
 
+
 MoviesScene.propTypes = {
   classes: object.isRequired,
-  movies: object.isRequired,
+  movies: array.isRequired,
 }
+
 
 export default withStyles(styles)(MoviesScene)
