@@ -13,7 +13,7 @@ const LayoutScene = () =>
   <React.Fragment>
     <Background>
       <Header />
-      <div style={{ paddingTop: 64 }}>
+      <div style={{ paddingTop: 60 }}>
         <Container>
           <Switch>
             <Route exact path="/" component={IndexScene} />

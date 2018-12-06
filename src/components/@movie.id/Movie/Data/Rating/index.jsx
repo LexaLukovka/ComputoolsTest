@@ -1,24 +1,34 @@
 import React from 'react'
 import { number, object, string } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import { Divider, withStyles } from '@material-ui/core'
 import Typography from '@material-ui/core/es/Typography/Typography'
 
-const styles = {
+const styles = theme => ({
   root: {
     display: 'flex',
     marginTop: 20,
-    marginBottom: 50,
   },
   data: {
     margin: 10,
   },
-}
+  divider: {
+    width: 3,
+    height: 20,
+    opacity: 0.1,
+    borderRadius: 10,
+    alignSelf: 'center',
+    transform: 'rotate(90)',
+    background: theme.palette.secondary.light,
+  },
+})
 
 const Rating = ({ classes, score, rating, release }) =>
   <div className={classes.root}>
-    <Typography color="inherit" className={classes.data}>Score: {score}</Typography>
-    <Typography color="inherit" className={classes.data}>Rating: {rating}</Typography>
-    <Typography color="inherit" className={classes.data}>Release Date: {release}</Typography>
+    <Typography color="inherit" variant="subtitle1" className={classes.data}>Score: {score}</Typography>
+    <Divider className={classes.divider} />
+    <Typography color="inherit" variant="subtitle1" className={classes.data}>Rating: {rating}</Typography>
+    <Divider className={classes.divider} />
+    <Typography color="inherit" variant="subtitle1" className={classes.data}>Release Date: {release}</Typography>
   </div>
 
 Rating.propTypes = {

@@ -12,26 +12,27 @@ const styles = {
   background: {
     zIndex: 1,
     position: 'fixed',
-    filter: 'blur(10px)',
+    filter: 'blur(20px)',
     backgroundSize: '100%',
+    backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundAttachment: 'fixed',
-    backgroundPosition: 'center',
-    '-webkit-filter': 'blur(10px)',
+    '-webkit-filter': 'blur(30px)',
   },
   container: {
+    zIndex: 2,
     width: '100%',
     height: '100%',
     display: 'flex',
-    justifyContent: 'space-evenly',
-    zIndex: 2,
     position: 'fixed',
+    alignSelf: 'center',
+    justifyContent: 'space-evenly',
   },
   image: {
-    alignSelf: 'center',
     width: 342,
     height: 500,
     borderRadius: 0,
+    alignSelf: 'center',
   },
 }
 
