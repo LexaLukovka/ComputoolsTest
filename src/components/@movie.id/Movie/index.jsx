@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core'
 import connector from '../connector'
 import Avatar from '@material-ui/core/es/Avatar/Avatar'
 import Data from 'components/@movie.id/Movie/Data'
+import Arrows from 'components/@movie.id/Movie/Arrows'
 
 const styles = {
   root: {
@@ -23,8 +24,12 @@ const styles = {
     zIndex: 2,
     width: '100%',
     height: '100%',
-    display: 'flex',
     position: 'fixed',
+  },
+  flex: {
+    height: '100%',
+    paddingBottom: 220,
+    display: 'flex',
     alignSelf: 'center',
     justifyContent: 'space-evenly',
   },
@@ -58,8 +63,11 @@ class Movie extends React.Component {
           style={{ width: '100%', height: '100%', backgroundImage: `url(${url}${movie.poster_path})` }}
         />
         <div className={classes.container}>
-          <Avatar className={classes.image} src={`${url}${movie.poster_path}`} />
-          <Data movie={movie} />
+          <Arrows movie={movie} />
+          <div className={classes.flex}>
+            <Avatar className={classes.image} src={`${url}${movie.poster_path}`} />
+            <Data movie={movie} />
+          </div>
         </div>
       </div>
     )

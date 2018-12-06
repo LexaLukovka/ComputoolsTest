@@ -36,7 +36,7 @@ const Data = ({ classes, movie }) =>
     />
     <div className={classes.overview}>
       <Divider className={classes.divider} />
-      <Typography color="inherit">{movie.overview}</Typography>
+      <Typography color="inherit" style={{ fontSize: '0.84rem' }}>{movie.overview}</Typography>
       <Divider className={classes.divider} />
     </div>
   </div>
