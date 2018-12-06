@@ -14,7 +14,7 @@ const styles = {
 
 const Loading = ({ classes }) =>
   <div className={classes.root}>
-    <CircularProgress className={classes.progress} size={80} />
+    <CircularProgress color="secondary" className={classes.progress} size={80} />
   </div>
 
 Loading.propTypes = {

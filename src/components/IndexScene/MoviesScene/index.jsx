@@ -14,9 +14,14 @@ const styles = theme => ({
     margin: '80px',
 
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
+    gridTemplateColumns: '342px 342px 342px 342px 342px',
     gridColumnGap: '20px',
     gridRowGap: '40px',
+
+    [theme.breakpoints.down('lg')]: {
+      gridTemplateColumns: '300px 300px 300px 300px',
+      margin: 0,
+    },
 
     [theme.breakpoints.down('md')]: {
       gridTemplateColumns: '300px 300px 300px',
@@ -25,12 +30,12 @@ const styles = theme => ({
 
     [theme.breakpoints.down('sm')]: {
       gridTemplateColumns: '280px 280px',
-      margin: 0,
+      marginTop: 20,
     },
 
     [theme.breakpoints.down('xs')]: {
-      gridTemplateColumns: '1fr',
-      margin: 0,
+      gridTemplateColumns: '150px 150px',
+      marginTop: 10,
     },
   },
 })
