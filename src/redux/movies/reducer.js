@@ -1,10 +1,11 @@
 import LocalStorage from 'services/LocalStorage'
-import { FIND_MOVIE, LOAD_MOVIES_FULFILLED, LOAD_MOVIES_PENDING, LOAD_MOVIES_REJECTED } from './action'
+import { FAVORITE_MOVIE, FIND_MOVIE, LOAD_MOVIES_FULFILLED, LOAD_MOVIES_PENDING, LOAD_MOVIES_REJECTED } from './action'
 
 const initialState = {
   loading: false,
   error: null,
   pages: LocalStorage.get('pages') || null,
+  favorite: LocalStorage.get('favorite') || [],
   current: LocalStorage.get('current') || null,
   movies: LocalStorage.get('movies') || {},
 }
@@ -18,6 +19,24 @@ const moviesReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         current,
+      }
+    }
+
+    case FAVORITE_MOVIE: {
+      const favorite = [...state.favorite]
+      const index = favorite.findIndex(f => f.id === payload.id)
+      if (index < 0) {
+        favorite.push(payload)
+        LocalStorage.put('favorite', favorite)
+      } else {
+        favorite.splice(index, 1)
+        LocalStorage.put('favorite', favorite)
+      }
+
+
+      return {
+        ...state,
+        favorite,
       }
     }
 

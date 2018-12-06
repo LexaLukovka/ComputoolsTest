@@ -6,6 +6,7 @@ import movies from 'src/redux/movies/action'
 const initMapStateToProps = store => ({
   layout: store.layoutReducer,
   movie: store.moviesReducer.current,
+  favorite: store.moviesReducer.favorite,
 })
 
 const initMapDispatchToProps = dispatch => ({
