@@ -2,8 +2,8 @@
 import Http from 'services/Http'
 
 class Movie {
-  all() {
-    return Http.get('/movie/now_playing?api_key=ebea8cfca72fdff8d2624ad7bbf78e4c')
+  all(page) {
+    return Http.get(`/movie/now_playing?api_key=ebea8cfca72fdff8d2624ad7bbf78e4c&page=${page}`)
   }
 }
 

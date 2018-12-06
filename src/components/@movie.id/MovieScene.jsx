@@ -28,7 +28,11 @@ MovieScene.propTypes = {
   classes: object.isRequired,
   actions: object.isRequired,
   match: object.isRequired,
-  movie: object.isRequired,
+  movie: object,
+}
+
+MovieScene.defaultProps = {
+  movie: null,
 }
 
 export default withStyles(styles)(connector(MovieScene))

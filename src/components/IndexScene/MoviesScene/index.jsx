@@ -2,16 +2,18 @@ import React from 'react'
 import { object } from 'prop-types'
 import { withStyles } from '@material-ui/core'
 import MovieCard from './MovieCard'
+import Pages from './Pages'
 
 const styles = theme => ({
   root: {
     marginTop: 64,
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
   },
   grid: {
     marginTop: 0,
-    margin: '80px',
+    margin: 90,
 
     display: 'grid',
     gridTemplateColumns: '342px 342px 342px 342px 342px',
@@ -20,7 +22,7 @@ const styles = theme => ({
 
     [theme.breakpoints.down('lg')]: {
       gridTemplateColumns: '300px 300px 300px 300px',
-      margin: 0,
+      margin: 40,
     },
 
     [theme.breakpoints.down('md')]: {
@@ -46,6 +48,7 @@ const MoviesScene = ({ classes, movies }) =>
       {movies.results && movies.results.map(movie =>
         <MovieCard key={movie.id} movie={movie} />)}
     </div>
+    <Pages />
   </div>
 
 MoviesScene.propTypes = {

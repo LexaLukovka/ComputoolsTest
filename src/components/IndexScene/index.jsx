@@ -6,9 +6,16 @@ import MoviesScene from './MoviesScene'
 
 class IndexScene extends React.Component {
   componentDidMount() {
-    const { actions } = this.props
+    const { actions, movies } = this.props
     document.title = 'Computools'
-    actions.movies.load()
+    actions.movies.load(movies.currentPage)
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { actions, movies } = this.props
+    if (prevProps.movies.currentPage !== movies.currentPage) {
+      actions.movies.load(movies.currentPage)
+    }
   }
 
   render() {

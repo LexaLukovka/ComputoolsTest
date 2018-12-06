@@ -25,6 +25,9 @@ const theme = createMuiTheme({
       fontSize: '0.7rem',
       letterSpacing: '-0.7px',
     },
+    button: {
+      textTransform: 'none',
+    },
   },
 
   spacing: {

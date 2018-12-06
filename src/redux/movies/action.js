@@ -1,6 +1,7 @@
 import Movie from 'services/api/Movie'
 
 export const FIND_MOVIE = 'FIND_MOVIE'
+export const CHANGE_PAGE = 'CHANGE_PAGE'
 
 export const LOAD_MOVIES = 'LOAD_MOVIES'
 export const LOAD_MOVIES_PENDING = 'LOAD_MOVIES_PENDING'
@@ -17,4 +18,9 @@ const find = id => ({
   payload: id,
 })
 
-export default { load, find }
+const changePage = page => ({
+  type: CHANGE_PAGE,
+  payload: page,
+})
+
+export default { load, find, changePage }
