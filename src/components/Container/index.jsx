@@ -2,13 +2,10 @@ import React from 'react'
 import { node, object, string } from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     width: '100%',
     height: '100%',
-    [theme.breakpoints.up('md')]: {
-      paddingTop: 10,
-    },
   },
 })
 
