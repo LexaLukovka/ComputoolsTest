@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   root: {
-    paddingTop: 0,
+    marginTop: 64,
     width: '100%',
     [theme.breakpoints.up('md')]: {
       paddingTop: 10,
