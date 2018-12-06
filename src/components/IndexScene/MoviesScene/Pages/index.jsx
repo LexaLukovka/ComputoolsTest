@@ -1,5 +1,6 @@
 import React from 'react'
 import { number, object } from 'prop-types'
+import { Link, withRouter } from 'react-router-dom'
 import { Button, withStyles } from '@material-ui/core'
 import connector from './connector'
 
@@ -26,85 +27,49 @@ const styles = theme => ({
   },
 })
 
-class Pages extends React.Component {
-  handlePage = (page) => {
-    const { actions } = this.props
-    actions.movies.changePage(page)
-  }
 
-  render() {
-    const { classes, currentPage, pages } = this.props
-    return (
-      <div className={classes.root}>
-        {currentPage - 1 > 0 &&
-        <Button
-          variant="outlined"
-          className={classes.first}
-          onClick={() => this.handlePage(1)}
-        >
-          First
-        </Button>}
-        {currentPage - 1 > 0 &&
-        <Button
-          variant="outlined"
-          className={classes.button}
-          onClick={() => this.handlePage(currentPage - 1)}
-        >
-          Prev
-        </Button>}
-        {currentPage - 1 > 0 &&
-        <Button
-          variant="outlined"
-          className={classes.button}
-          onClick={() => this.handlePage(currentPage - 1)}
-        >
-          {currentPage - 1}
-        </Button>}
+const Pages = ({ match, classes, pages }) => {
+  const currentPage = +match.params.page
 
-        <Button
-          color="primary"
-          variant="outlined"
-          className={classes.buttonCurrent}
-          onClick={() => this.handlePage(currentPage)}
-        >
-          {currentPage}
-        </Button>
+  return (
+    <div className={classes.root}>
+      {currentPage > 1 &&
+      <Link to={`/movies/${1}`}>
+        <Button variant="outlined" className={classes.first}>First</Button>
+      </Link>}
 
-        {currentPage < pages &&
-        <Button
-          variant="outlined"
-          className={classes.button}
-          onClick={() => this.handlePage(currentPage + 1)}
-        >
-          {currentPage + 1}
-        </Button>}
-        {currentPage < pages &&
-        <Button
-          color="secondary"
-          variant="outlined"
-          className={classes.button}
-          onClick={() => this.handlePage(currentPage + 1)}
-        >
-          Next
-        </Button>}
-        {currentPage < pages &&
-        <Button
-          variant="outlined"
-          className={classes.last}
-          onClick={() => this.handlePage(pages)}
-        >
-          Last
-        </Button>}
-      </div>
-    )
-  }
+      {currentPage > 1 &&
+      <Link to={`/movies/${currentPage - 1}`}>
+        <Button variant="outlined" className={classes.button}>Prev</Button>
+      </Link>}
+      {currentPage > 1 &&
+      <Link to={`/movies/${currentPage - 1}`}>
+        <Button variant="outlined" className={classes.button}>{currentPage - 1}</Button>
+      </Link>}
+
+      <Button color="primary" variant="outlined" className={classes.buttonCurrent}>{currentPage}</Button>
+
+      {currentPage < pages &&
+      <Link to={`/movies/${currentPage + 1}`}>
+        <Button variant="outlined" className={classes.button}>{currentPage + 1}</Button>
+      </Link>}
+      {currentPage < pages &&
+      <Link to={`/movies/${currentPage + 1}`}>
+        <Button variant="outlined" className={classes.button}>Next</Button>
+      </Link>}
+
+      {currentPage < pages &&
+      <Link to={`/movies/${pages}`}>
+        <Button variant="outlined" className={classes.last}>Last</Button>
+      </Link>}
+    </div>
+  )
 }
 
 Pages.propTypes = {
   classes: object.isRequired,
-  actions: object.isRequired,
-  currentPage: number.isRequired,
+  match: object.isRequired,
   pages: number.isRequired,
 }
 
-export default withStyles(styles)(connector(Pages))
+export default withStyles(styles)(connector(withRouter(Pages)))

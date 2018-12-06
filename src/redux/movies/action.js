@@ -18,9 +18,4 @@ const find = id => ({
   payload: id,
 })
 
-const changePage = page => ({
-  type: CHANGE_PAGE,
-  payload: page,
-})
-
-export default { load, find, changePage }
+export default { load, find }

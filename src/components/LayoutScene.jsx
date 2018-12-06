@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import withTheme from 'utils/withTheme'
 
 import Background from 'components/Background'
@@ -16,8 +16,9 @@ const LayoutScene = () =>
       <div style={{ paddingTop: 60 }}>
         <Container>
           <Switch>
-            <Route exact path="/" component={IndexScene} />
+            <Route exact path="/movies/:page" component={IndexScene} />
             <Route exact path="/movie/:id" component={MovieScene} />
+            <Redirect to={`/movies/${1}`} />
           </Switch>
         </Container>
       </div>

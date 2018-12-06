@@ -3,29 +3,37 @@ import { object } from 'prop-types'
 import connector from './connector'
 import Loading from '../Loading'
 import MoviesScene from './MoviesScene'
+import NotFound from 'components/NotFound'
+import isEmpty from 'lodash/isEmpty'
 
 class IndexScene extends React.Component {
   componentDidMount() {
-    const { actions, movies } = this.props
+    const { actions, match } = this.props
     document.title = 'Computools'
-    actions.movies.load(movies.currentPage)
+    actions.movies.load(match.params.page)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const { actions, movies } = this.props
-    if (prevProps.movies.currentPage !== movies.currentPage) {
-      actions.movies.load(movies.currentPage)
+    const { actions, match } = this.props
+    const { page } = match.params
+    if (prevProps.match.params.page !== page) {
+      actions.movies.load(page)
     }
   }
 
   render() {
     const { movies } = this.props
-    return movies.loading ? <Loading /> : <MoviesScene movies={movies.movies} />
+
+    if (movies.loading) return <Loading />
+    if (isEmpty(movies.movies.results)) return <NotFound />
+
+    return <MoviesScene movies={movies.movies} />
   }
 }
 
 IndexScene.propTypes = {
   actions: object.isRequired,
+  match: object.isRequired,
   movies: object.isRequired,
 }
 

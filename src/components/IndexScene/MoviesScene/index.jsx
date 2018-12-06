@@ -3,6 +3,7 @@ import { object } from 'prop-types'
 import { withStyles } from '@material-ui/core'
 import MovieCard from './MovieCard'
 import Pages from './Pages'
+import isEmpty from 'lodash/isEmpty'
 
 const styles = theme => ({
   root: {
@@ -45,7 +46,8 @@ const styles = theme => ({
 const MoviesScene = ({ classes, movies }) =>
   <div className={classes.root}>
     <div className={classes.grid}>
-      {movies.results && movies.results.map(movie =>
+      {!isEmpty(movies.results) &&
+      movies.results.map(movie =>
         <MovieCard key={movie.id} movie={movie} />)}
     </div>
     <Pages />

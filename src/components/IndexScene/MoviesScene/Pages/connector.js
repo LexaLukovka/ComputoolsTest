@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import movies from 'src/redux/movies/action'
 
 const initMapStateToProps = store => ({
-  currentPage: store.moviesReducer.currentPage,
   pages: store.moviesReducer.pages,
 })
 
