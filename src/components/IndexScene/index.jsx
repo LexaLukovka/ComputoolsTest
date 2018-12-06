@@ -27,7 +27,7 @@ class IndexScene extends React.Component {
     if (movies.loading) return <Loading />
     if (isEmpty(movies.movies.results)) return <NotFound />
 
-    return <MoviesScene movies={movies.movies} />
+    return <MoviesScene movies={movies.movies.results} />
   }
 }
 

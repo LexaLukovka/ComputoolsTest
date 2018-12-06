@@ -1,7 +1,9 @@
 import React from 'react'
-import { array, bool, func, node, object, shape, string } from 'prop-types'
-import { Button, Divider, Grid, Typography, withStyles } from '@material-ui/core'
-import Rating from 'components/@movie.id/Movie/Data/Rating'
+import { array, object } from 'prop-types'
+import { Divider, Grid, Typography, withStyles } from '@material-ui/core'
+import Rating from './Rating'
+import FavoriteAction from './FavoriteAction'
+import connector from '../../connector'
 
 const styles = theme => ({
   root: {
@@ -24,7 +26,7 @@ const styles = theme => ({
 const Data = ({ classes, movie }) =>
   <div className={classes.root}>
     <Grid container justify="flex-end">
-      <Button color="inherit" variant="outlined">Add favorite</Button>
+      <FavoriteAction />
     </Grid>
     <Typography color="inherit" variant="h4">{movie.title}</Typography>
     <Rating
@@ -39,9 +41,11 @@ const Data = ({ classes, movie }) =>
     </div>
   </div>
 
+
 Data.propTypes = {
   classes: object.isRequired,
   movie: object.isRequired,
 }
 
-export default withStyles(styles)(Data)
+
+export default withStyles(styles)(connector(Data))

@@ -1,7 +1,7 @@
 import Movie from 'services/api/Movie'
 
 export const FIND_MOVIE = 'FIND_MOVIE'
-export const CHANGE_PAGE = 'CHANGE_PAGE'
+export const FAVORITE_MOVIE = 'FAVORITE_MOVIE'
 
 export const LOAD_MOVIES = 'LOAD_MOVIES'
 export const LOAD_MOVIES_PENDING = 'LOAD_MOVIES_PENDING'
@@ -18,4 +18,9 @@ const find = id => ({
   payload: id,
 })
 
-export default { load, find }
+const favorite = movie => ({
+  type: FAVORITE_MOVIE,
+  payload: movie,
+})
+
+export default { load, find, favorite }

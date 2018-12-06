@@ -47,10 +47,10 @@ class Movie extends React.Component {
     actions.layout.removeBackground()
   }
 
+
   render() {
     const { classes, movie } = this.props
     const url = 'http://image.tmdb.org/t/p/w342'
-
     return (
       <div className={classes.root}>
         <div
