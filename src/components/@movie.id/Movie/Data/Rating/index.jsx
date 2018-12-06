@@ -18,7 +18,7 @@ const styles = theme => ({
     borderRadius: 10,
     alignSelf: 'center',
     transform: 'rotate(90)',
-    background: theme.palette.secondary.light,
+    background: theme.palette.primary.light,
   },
 })
 

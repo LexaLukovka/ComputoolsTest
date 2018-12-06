@@ -18,14 +18,16 @@ const styles = theme => ({
     marginTop: 40,
     marginBottom: 40,
     borderRadius: 10,
-    background: theme.palette.secondary.light,
+    background: theme.palette.primary.light,
   },
-  overview: {},
+  button: {
+    color: theme.palette.primary.light,
+  },
 })
 
 const Data = ({ classes, movie }) =>
   <div className={classes.root}>
-    <Grid container justify="flex-end">
+    <Grid container justify="flex-end" className={classes.button}>
       <FavoriteAction />
     </Grid>
     <Typography color="inherit" variant="h4">{movie.title}</Typography>
