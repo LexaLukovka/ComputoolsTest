@@ -4,10 +4,11 @@ import { Button, Typography, withStyles } from '@material-ui/core'
 import connector from '../../connector'
 import { Link } from 'react-router-dom'
 
-const styles = () => ({
+const styles = theme => ({
   root: {
     marginLeft: 50,
     maxWidth: 1100,
+    color: theme.palette.primary.light,
   },
   overview: {
     paddingTop: 30,
@@ -28,7 +29,7 @@ class Data extends React.Component {
           <Link to={`/movie/${movie.id}`}>
             <Typography variant="h5" color="secondary">{movie.title}</Typography>
           </Link>
-          <Button variant="outlined" color="secondary" onClick={() => this.handleFavorite(movie)}>
+          <Button variant="outlined" color="inherit" onClick={() => this.handleFavorite(movie)}>
             Unfavorite
           </Button>
         </div>

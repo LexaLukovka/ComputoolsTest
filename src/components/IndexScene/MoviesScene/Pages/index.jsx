@@ -9,9 +9,10 @@ const styles = theme => ({
     marginBottom: 20,
     display: 'flex',
     justifyContent: 'center',
+    color: theme.palette.primary.light,
   },
   button: {
-    color: theme.palette.primary.dark,
+    color: theme.palette.primary.light,
     borderRadius: 0,
   },
   buttonCurrent: {
@@ -40,7 +41,7 @@ const Pages = ({ match, classes, pages }) => {
 
       {currentPage > 1 &&
       <Link to={`/movies/${currentPage - 1}`}>
-        <Button variant="outlined" className={classes.button}>Prev</Button>
+        <Button variant="outlined" color="inherit" className={classes.button}>Prev</Button>
       </Link>}
       {currentPage > 1 &&
       <Link to={`/movies/${currentPage - 1}`}>
@@ -55,7 +56,7 @@ const Pages = ({ match, classes, pages }) => {
       </Link>}
       {currentPage < pages &&
       <Link to={`/movies/${currentPage + 1}`}>
-        <Button variant="outlined" className={classes.button}>Next</Button>
+        <Button variant="outlined" color="inherit" className={classes.button}>Next</Button>
       </Link>}
 
       {currentPage < pages &&

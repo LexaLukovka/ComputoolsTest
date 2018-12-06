@@ -9,7 +9,7 @@ import connector from './connector'
 
 const styles = theme => ({
   root: {
-    color: theme.palette.secondary.light,
+    color: theme.palette.primary.light,
   },
   block: {
     margin: 50,
