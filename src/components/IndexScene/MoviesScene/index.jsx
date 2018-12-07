@@ -32,17 +32,17 @@ const styles = theme => ({
 
     [theme.breakpoints.down('md')]: {
       gridTemplateColumns: '300px 300px 300px',
-      margin: 0,
+      margin: 20,
     },
 
     [theme.breakpoints.down('sm')]: {
       gridTemplateColumns: '280px 280px',
-      marginTop: 20,
     },
 
     [theme.breakpoints.down('xs')]: {
       gridTemplateColumns: '150px 150px',
-      marginTop: 10,
+      margin: 10,
+      marginBottom: 15,
     },
   },
 })
