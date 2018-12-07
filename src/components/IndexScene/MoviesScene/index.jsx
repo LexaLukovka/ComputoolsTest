@@ -1,6 +1,6 @@
 import React from 'react'
 import { array, object } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import { Typography, withStyles } from '@material-ui/core'
 import MovieCard from './MovieCard'
 import Pages from './Pages'
 
@@ -9,6 +9,11 @@ const styles = theme => ({
     marginTop: 64,
     display: 'flex',
     flexDirection: 'column',
+  },
+  title: {
+    marginLeft: 100,
+    marginBottom: 20,
+    color: theme.palette.primary.light,
   },
   grid: {
     marginTop: 0,
@@ -44,6 +49,7 @@ const styles = theme => ({
 
 const MoviesScene = ({ classes, movies }) =>
   <div className={classes.root}>
+    <Typography variant="h5" className={classes.title}>Latest Release</Typography>
     <div className={classes.grid}>
       {movies.map(movie =>
         <MovieCard key={movie.id} movie={movie} />)}
