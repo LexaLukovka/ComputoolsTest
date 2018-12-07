@@ -24,17 +24,29 @@ const styles = theme => ({
   },
 })
 
-const FavoriteScene = ({ classes, favorite }) => {
-  if (isEmpty(favorite)) return <NotFound />
-  return <div className={classes.root}>
-    <div className={classes.container}>
-      <Typography variant="h5" className={classes.title}>My favorite</Typography>
-      {favorite.map(movie => <Favorite key={movie.id} movie={movie} />)}
+class FavoriteScene extends React.Component {
+  componentDidMount() {
+    const { actions, match } = this.props
+    actions.movies.url(match.url)
+  }
+
+  render() {
+    const { classes, favorite } = this.props
+    if (isEmpty(favorite)) return <NotFound />
+
+    return <div className={classes.root}>
+      <div className={classes.container}>
+        <Typography variant="h5" className={classes.title}>My favorite</Typography>
+        {favorite.map(movie => <Favorite key={movie.id} movie={movie} />)}
+      </div>
     </div>
-  </div>
+  }
 }
 
+
 FavoriteScene.propTypes = {
+  actions: object.isRequired,
+  match: object.isRequired,
   classes: object.isRequired,
   favorite: array.isRequired,
 }

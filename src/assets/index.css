@@ -1,5 +1,5 @@
 html, body {
-    background-position: center;
+    background: #f2f3f5;
     background-size: cover;
     height: 100%;
     font-family: Roboto, sans-serif;
@@ -10,10 +10,12 @@ html, body {
 
 #root {
     height: 100%;
+    background: #f2f3f5;
 }
 
 #root > div {
     height: 100%;
+    background: #f2f3f5;
 }
 
 a {

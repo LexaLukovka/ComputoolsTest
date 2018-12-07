@@ -1,7 +1,9 @@
 import { connect } from 'react-redux'
 
 const initMapStateToProps = store => ({
-  movies: store.moviesReducer.favorite,
+  url: store.moviesReducer.url,
+  moviesStore: store.moviesReducer.movies,
+  favorite: store.moviesReducer.favorite,
 })
 
 

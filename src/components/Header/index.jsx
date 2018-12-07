@@ -72,7 +72,7 @@ class Header extends React.Component {
                 inputProps={{ className: classes.select }}
                 labelWidth={0}
                 name="scene"
-                id="outlined-age-simple"
+                id="outlined-scene-simple"
               />}
             >
               <MenuItem value="movies">
