@@ -14,17 +14,33 @@ const styles = theme => ({
   button: {
     color: theme.palette.primary.light,
     borderRadius: 0,
+    [theme.breakpoints.down('xs')]: {
+      padding: 0,
+      minWidth: 45,
+    },
   },
   buttonCurrent: {
     borderRadius: 0,
+    [theme.breakpoints.down('xs')]: {
+      padding: 0,
+      minWidth: 45,
+    },
   },
   first: {
     borderRadius: '4px 0 0 4px',
     color: theme.palette.primary.main,
+    [theme.breakpoints.down('xs')]: {
+      padding: 0,
+      minWidth: 45,
+    },
   },
   last: {
     borderRadius: '0 4px 4px 0',
     color: theme.palette.primary.main,
+    [theme.breakpoints.down('xs')]: {
+      padding: 0,
+      minWidth: 45,
+    },
   },
 })
 

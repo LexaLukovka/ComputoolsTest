@@ -6,14 +6,20 @@ import Pages from './Pages'
 
 const styles = theme => ({
   root: {
-    marginTop: 64,
+    marginTop: 50,
     display: 'flex',
     flexDirection: 'column',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 20,
+    },
   },
   title: {
     marginLeft: 100,
     marginBottom: 20,
     color: theme.palette.primary.light,
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: 0,
+    },
   },
   grid: {
     marginTop: 0,
@@ -32,17 +38,22 @@ const styles = theme => ({
 
     [theme.breakpoints.down('md')]: {
       gridTemplateColumns: '300px 300px 300px',
-      margin: 0,
+      margin: 20,
     },
 
     [theme.breakpoints.down('sm')]: {
       gridTemplateColumns: '280px 280px',
-      marginTop: 20,
+      gridColumnGap: '15px',
+      gridRowGap: '30px',
     },
 
     [theme.breakpoints.down('xs')]: {
+      margin: 10,
+      marginBottom: 15,
+
       gridTemplateColumns: '150px 150px',
-      marginTop: 10,
+      gridColumnGap: '10px',
+      gridRowGap: '20px',
     },
   },
 })
