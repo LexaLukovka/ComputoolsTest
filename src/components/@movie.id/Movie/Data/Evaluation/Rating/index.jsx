@@ -15,6 +15,7 @@ const styles = theme => ({
     },
   },
   label: {
+    opacity: 0.8,
     alignSelf: 'center',
     [theme.breakpoints.down('sm')]: {
       alignSelf: 'flex-start',
@@ -53,17 +54,16 @@ const Rating = ({ classes, score, rating, release }) =>
     <div className={classes.data}>
       <Typography color="inherit" variant="subtitle1" className={classes.label}>Score: &nbsp;</Typography>
       <Typography className={classes.value} variant="subtitle1">{score}</Typography>
-      <Divider className={classes.divider} />
     </div>
+    <Divider className={classes.divider} />
     <div className={classes.data}>
       <Typography color="inherit" variant="subtitle1" className={classes.label}>Rating: &nbsp;</Typography>
       <Typography className={classes.value} variant="subtitle1">{rating}</Typography>
-      <Divider className={classes.divider} />
     </div>
+    <Divider className={classes.divider} />
     <div className={classes.data}>
       <Typography color="inherit" variant="subtitle1" className={classes.label}>Release Date: &nbsp;</Typography>
       <Typography className={classes.value} variant="subtitle1">{release}</Typography>
-      <Divider className={classes.divider} />
     </div>
   </div>
 

@@ -20,7 +20,7 @@ const styles = theme => ({
   title: {
     marginLeft: 50,
     marginBottom: 20,
-    color: theme.palette.primary.light,
+    color: theme.palette.primary.dark,
   },
 })
 

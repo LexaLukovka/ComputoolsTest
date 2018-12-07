@@ -21,6 +21,7 @@ const styles = theme => ({
   },
   button: {
     color: theme.palette.primary.light,
+    opacity: 0.8,
   },
   rating: {
     [theme.breakpoints.down('sm')]: {
