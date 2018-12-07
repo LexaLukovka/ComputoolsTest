@@ -7,12 +7,12 @@ import Typography from '@material-ui/core/Typography/Typography'
 const styles = theme => ({
   root: {
     justifyContent: 'stretch',
-    height: 420,
+    height: 500,
     cursor: 'pointer',
     backgroundSize: '100%',
     backgroundPosition: 'center',
     [theme.breakpoints.down('xs')]: {
-      height: 210,
+      height: 250,
     },
   },
   card: {

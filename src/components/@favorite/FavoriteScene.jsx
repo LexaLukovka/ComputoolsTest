@@ -9,12 +9,17 @@ import connector from './connector'
 const styles = theme => ({
   root: {
     margin: 50,
+    [theme.breakpoints.down('xs')]: {
+      margin: 10,
+    },
   },
   container: {
     display: 'flex',
     flexDirection: 'column',
   },
   title: {
+    marginLeft: 50,
+    marginBottom: 20,
     color: theme.palette.primary.light,
   },
 })
@@ -23,7 +28,7 @@ const FavoriteScene = ({ classes, favorite }) => {
   if (isEmpty(favorite)) return <NotFound />
   return <div className={classes.root}>
     <div className={classes.container}>
-      <Typography variant="h6" className={classes.title}>My favorite</Typography>
+      <Typography variant="h5" className={classes.title}>My favorite</Typography>
       {favorite.map(movie => <Favorite key={movie.id} movie={movie} />)}
     </div>
   </div>

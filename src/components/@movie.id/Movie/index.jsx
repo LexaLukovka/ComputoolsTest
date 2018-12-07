@@ -1,10 +1,9 @@
 import React from 'react'
-import { array, bool, func, node, object, shape, string } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import { object } from 'prop-types'
+import { Avatar, withStyles } from '@material-ui/core'
+import Data from './Data'
+import Arrows from './Arrows'
 import connector from '../connector'
-import Avatar from '@material-ui/core/es/Avatar/Avatar'
-import Data from 'components/@movie.id/Movie/Data'
-import Arrows from 'components/@movie.id/Movie/Arrows'
 
 const styles = {
   root: {

@@ -37,6 +37,8 @@ class Arrows extends React.Component {
 
   render() {
     const { classes, movies, movie } = this.props
+    const indexMovie = movies.findIndex(f => f.id === movie.id)
+
     return (
       <div className={classes.root}>
         <div className="flex">
@@ -44,7 +46,7 @@ class Arrows extends React.Component {
             <KeyboardArrowLeftIcon className={classes.icon} />
             <Typography color="inherit" variant="h5" style={{ alignSelf: 'center' }}>Back to list</Typography>
           </div>
-          {movies.findIndex(f => f.id === movie.id) !== (movies.length - 1) &&
+          {indexMovie !== (movies.length - 1) && indexMovie >= 0 &&
           <div className={classes.block} onClick={this.handleNext}>
             <Typography color="inherit" variant="h5" style={{ alignSelf: 'center' }}>Next Movie</Typography>
             <KeyboardArrowRightIcon className={classes.icon} />
