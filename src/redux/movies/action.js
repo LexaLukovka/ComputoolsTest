@@ -1,5 +1,6 @@
 import Movie from 'services/api/Movie'
 
+export const URL = 'URL'
 export const FIND_MOVIE = 'FIND_MOVIE'
 export const FAVORITE_MOVIE = 'FAVORITE_MOVIE'
 
@@ -23,4 +24,9 @@ const favorite = movie => ({
   payload: movie,
 })
 
-export default { load, find, favorite }
+const url = path => ({
+  type: URL,
+  payload: path,
+})
+
+export default { load, find, favorite, url }

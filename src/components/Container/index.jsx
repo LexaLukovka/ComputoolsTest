@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles'
 const styles = () => ({
   root: {
     width: '100%',
-    height: '100%',
   },
 })
 

@@ -11,6 +11,7 @@ class IndexScene extends React.Component {
     const { actions, match } = this.props
     document.title = 'Computools'
     actions.movies.load(match.params.page)
+    actions.movies.url(match.url)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -18,6 +19,7 @@ class IndexScene extends React.Component {
     const { page } = match.params
     if (prevProps.match.params.page !== page) {
       actions.movies.load(page)
+      actions.movies.url(match.url)
     }
   }
 

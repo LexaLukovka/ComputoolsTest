@@ -9,10 +9,10 @@ const styles = theme => ({
     marginBottom: 20,
     display: 'flex',
     justifyContent: 'center',
-    color: theme.palette.primary.light,
+    color: theme.palette.primary.dark,
   },
   button: {
-    color: theme.palette.primary.light,
+    color: 'inherit',
     borderRadius: 0,
     [theme.breakpoints.down('xs')]: {
       padding: 0,

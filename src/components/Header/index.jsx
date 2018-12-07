@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
 import React from 'react'
-import { object } from 'prop-types'
+import { object, string } from 'prop-types'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import { AppBar, MenuItem, OutlinedInput, Select, Toolbar, Typography, withStyles } from '@material-ui/core'
@@ -17,6 +17,9 @@ const styles = theme => ({
   flex: {
     display: 'flex',
   },
+  appBar: {
+    padding: 10,
+  },
   select: {
     padding: 10,
     paddingLeft: 20,
@@ -32,6 +35,8 @@ const styles = theme => ({
     },
   },
   icon: {
+    width: 30,
+    height: 30,
     color: 'inherit',
     marginRight: 5,
   },
@@ -39,7 +44,9 @@ const styles = theme => ({
 
 class Header extends React.Component {
   state = {
-    scene: 'movies',
+    url: this.props.url,
+    scene: this.props.url === '/favorite' ? 'favorite' : 'movies',
+    target: null,
   }
 
 
@@ -47,6 +54,10 @@ class Header extends React.Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
+  handleGo = url => {
+    this.setState({ url })
+    if (this.state.url !== url) this.props.history.push(url)
+  }
 
   render() {
     const { classes, header } = this.props
@@ -59,7 +70,7 @@ class Header extends React.Component {
 
             <div className={classes.flex}>
               <Link to={header.link} style={{ alignSelf: 'center' }}><StarsIcon className={classes.icon} /></Link>
-              <Typography variant="h6" color="inherit" className={classes.title}>
+              <Typography variant="h5" color="inherit" className={classes.title}>
                 <Link to={header.link}>{shortTitle(header.title)}</Link>
               </Typography>
             </div>
@@ -72,18 +83,29 @@ class Header extends React.Component {
                 inputProps={{ className: classes.select }}
                 labelWidth={0}
                 name="scene"
-                id="outlined-age-simple"
+                id="outlined-scene-simple"
               />}
             >
               <MenuItem value="movies">
-                {<Link to="/">
-                  <Typography variant="subtitle1" color="inherit"> My account </Typography>
-                </Link>}
+                <Typography
+                  style={{ width: '100%' }}
+                  variant="subtitle1"
+                  color="inherit"
+                  onClick={() => this.handleGo('/')}
+                >
+                  My account
+                </Typography>
+
               </MenuItem>
               <MenuItem value="favorite">
-                {<Link to="/favorite">
-                  <Typography variant="subtitle1" color="inherit"> Favorite </Typography>
-                </Link>}
+                <Typography
+                  style={{ width: '100%' }}
+                  variant="subtitle1"
+                  color="inherit"
+                  onClick={() => this.handleGo('/favorite')}
+                >
+                  Favorite
+                </Typography>
               </MenuItem>
             </Select>
 
@@ -96,7 +118,9 @@ class Header extends React.Component {
 
 Header.propTypes = {
   classes: object.isRequired,
+  history: object.isRequired,
   header: object.isRequired,
+  url: string.isRequired,
 }
 
 export default withStyles(styles)(connector(withRouter(Header)))

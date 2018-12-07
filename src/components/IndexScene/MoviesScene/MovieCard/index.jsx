@@ -11,6 +11,9 @@ const styles = theme => ({
     cursor: 'pointer',
     backgroundSize: '100%',
     backgroundPosition: 'center',
+    [theme.breakpoints.down('lg')]: {
+      height: 450,
+    },
     [theme.breakpoints.down('xs')]: {
       height: 220,
     },

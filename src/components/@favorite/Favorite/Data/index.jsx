@@ -1,13 +1,13 @@
 import React from 'react'
 import { object } from 'prop-types'
+import { Link } from 'react-router-dom'
 import { Button, Typography, withStyles } from '@material-ui/core'
 import connector from '../../connector'
-import { Link } from 'react-router-dom'
 
 const styles = theme => ({
   root: {
     marginLeft: 50,
-    maxWidth: 1100,
+    maxWidth: 1000,
     color: theme.palette.primary.dark,
     [theme.breakpoints.down('xs')]: {
       marginLeft: 10,
@@ -53,9 +53,9 @@ class Data extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.flex}>
-          <Link to={`/movie/${movie.id}`}>
-            <Typography variant="h5" color="secondary" className={classes.title}>{movie.title}</Typography>
-          </Link>
+          <Typography variant="h5" color="secondary" className={classes.title}>
+            <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
+          </Typography>
           <Button variant="outlined" color="inherit" style={{ width: 120 }} onClick={() => this.handleFavorite(movie)}>
             Unfavorite
           </Button>
