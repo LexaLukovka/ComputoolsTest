@@ -7,9 +7,17 @@ const styles = theme => ({
   root: {
     display: 'flex',
     marginTop: 20,
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      marginTop: 5,
+    },
   },
   data: {
     margin: 10,
+    display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+    },
   },
   divider: {
     width: 3,
@@ -17,8 +25,10 @@ const styles = theme => ({
     opacity: 0.1,
     borderRadius: 10,
     alignSelf: 'center',
-    transform: 'rotate(90)',
     background: theme.palette.primary.light,
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
 })
 
@@ -28,7 +38,9 @@ const Rating = ({ classes, score, rating, release }) =>
     <Divider className={classes.divider} />
     <Typography color="inherit" variant="subtitle1" className={classes.data}>Rating: {rating}</Typography>
     <Divider className={classes.divider} />
-    <Typography color="inherit" variant="subtitle1" className={classes.data}>Release Date: {release}</Typography>
+    <Typography color="inherit" variant="subtitle1" className={classes.data}>
+      <span>Release Date:&nbsp;</span> <span>{release}</span>
+    </Typography>
   </div>
 
 Rating.propTypes = {

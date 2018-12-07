@@ -2,9 +2,9 @@ import React from 'react'
 import { array, object } from 'prop-types'
 import { Button } from '@material-ui/core'
 import isEmpty from 'lodash/isEmpty'
-import connector from '../../../connector'
+import connector from '../../connector'
 
-class FavoriteAction extends React.Component {
+class FavoriteButtonAction extends React.Component {
   handleFavorite = movie => {
     const { actions } = this.props
     actions.movies.favorite(movie)
@@ -24,10 +24,10 @@ class FavoriteAction extends React.Component {
   }
 }
 
-FavoriteAction.propTypes = {
+FavoriteButtonAction.propTypes = {
   actions: object.isRequired,
   movie: object.isRequired,
   favorite: array.isRequired,
 }
 
-export default connector(FavoriteAction)
+export default connector(FavoriteButtonAction)

@@ -1,16 +1,16 @@
 import React from 'react'
-import { array, object } from 'prop-types'
-import { Divider, Grid, Typography, withStyles } from '@material-ui/core'
-import Rating from './Rating'
-import FavoriteAction from './FavoriteAction'
+import { object } from 'prop-types'
+import { Divider, Typography, withStyles } from '@material-ui/core'
 import connector from '../../connector'
 
 const styles = theme => ({
   root: {
     maxWidth: 700,
-    color: 'white',
     marginBottom: 30,
     alignSelf: 'center',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 20,
+    },
   },
   divider: {
     height: 3,
@@ -19,23 +19,27 @@ const styles = theme => ({
     marginBottom: 40,
     borderRadius: 10,
     background: theme.palette.primary.light,
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 20,
+      marginBottom: 20,
+    },
   },
-  button: {
-    color: theme.palette.primary.light,
+  overview: {
+    marginTop: 20,
+  },
+  desktop: {
+    display: 'none',
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+    },
   },
 })
 
 const Data = ({ classes, movie }) =>
   <div className={classes.root}>
-    <Grid container justify="flex-end" className={classes.button}>
-      <FavoriteAction />
-    </Grid>
-    <Typography color="inherit" variant="h4">{movie.title}</Typography>
-    <Rating
-      score={movie.vote_count}
-      rating={movie.vote_average}
-      release={movie.release_date}
-    />
+    <div className={classes.desktop}>
+      <Typography color="inherit" variant="h4">{movie.title}</Typography>
+    </div>
     <div className={classes.overview}>
       <Divider className={classes.divider} />
       <Typography color="inherit" style={{ fontSize: '0.84rem' }}>{movie.overview}</Typography>
