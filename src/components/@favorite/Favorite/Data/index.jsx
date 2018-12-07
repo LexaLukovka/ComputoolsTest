@@ -7,7 +7,7 @@ import connector from '../../connector'
 const styles = theme => ({
   root: {
     marginLeft: 50,
-    maxWidth: 1100,
+    maxWidth: 1000,
     color: theme.palette.primary.dark,
     [theme.breakpoints.down('xs')]: {
       marginLeft: 10,

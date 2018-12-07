@@ -32,12 +32,6 @@ class Movie extends React.Component {
     document.title = movie.title
   }
 
-  componentWillUnmount() {
-    const { actions } = this.props
-    actions.layout.removeBackground()
-  }
-
-
   render() {
     const { classes, movie } = this.props
     const url = 'http://image.tmdb.org/t/p/w342'
