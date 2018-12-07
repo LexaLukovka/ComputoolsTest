@@ -8,7 +8,7 @@ const styles = theme => ({
   root: {
     marginLeft: 50,
     maxWidth: 1100,
-    color: theme.palette.primary.light,
+    color: theme.palette.primary.dark,
     [theme.breakpoints.down('xs')]: {
       marginLeft: 10,
     },
