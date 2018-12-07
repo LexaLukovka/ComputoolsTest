@@ -3,12 +3,12 @@ import { array, object } from 'prop-types'
 import { IconButton, withStyles } from '@material-ui/core'
 import StarIcon from 'mdi-react/StarIcon'
 import isEmpty from 'lodash/isEmpty'
-import connector from '../../connector'
+import connector from '../connector'
 
 const styles = {
   icon: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     color: 'white',
   },
 }

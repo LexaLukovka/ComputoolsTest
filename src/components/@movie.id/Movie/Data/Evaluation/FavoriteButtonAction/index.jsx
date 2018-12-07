@@ -2,7 +2,7 @@ import React from 'react'
 import { array, object } from 'prop-types'
 import { Button } from '@material-ui/core'
 import isEmpty from 'lodash/isEmpty'
-import connector from '../../connector'
+import connector from '../connector'
 
 class FavoriteButtonAction extends React.Component {
   handleFavorite = movie => {
