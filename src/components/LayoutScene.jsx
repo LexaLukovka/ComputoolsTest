@@ -12,7 +12,7 @@ import FavoriteScene from 'components/@favorite/FavoriteScene'
 const LayoutScene = () =>
   <React.Fragment>
     <Header />
-    <div style={{ paddingTop: 60 }}>
+    <div style={{ paddingTop: 70 }}>
       <Container>
         <Switch>
           <Route exact path="/favorite" component={FavoriteScene} />
