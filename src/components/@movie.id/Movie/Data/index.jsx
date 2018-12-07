@@ -1,53 +1,104 @@
 import React from 'react'
-import { array, object } from 'prop-types'
-import { Divider, Grid, Typography, withStyles } from '@material-ui/core'
-import Rating from './Rating'
-import FavoriteAction from './FavoriteAction'
-import connector from '../../connector'
+import { object, string } from 'prop-types'
+import { Avatar, withStyles } from '@material-ui/core'
+import Arrows from './Arrows'
+import Description from './Description'
+import Evaluation from './Evaluation'
 
 const styles = theme => ({
   root: {
-    maxWidth: 700,
+    width: '100%',
+    height: '100%',
+  },
+  flex: {
+    margin: 20,
+    width: '100%',
+    height: '100%',
     color: 'white',
-    marginBottom: 30,
+    display: 'flex',
+    justifyContent: 'center',
+    paddingBottom: 260,
+    [theme.breakpoints.down('sm')]: {
+      margin: 5,
+      marginTop: 20,
+    },
+    [theme.breakpoints.down('xs')]: {
+      marginTop: 0,
+    },
+  },
+  data: {
+    margin: 20,
+    width: '100%',
+    display: 'flex',
     alignSelf: 'center',
+    justifyContent: 'center',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      margin: 10,
+    },
+    [theme.breakpoints.down('xs')]: {
+      alignSelf: 'end',
+      margin: '0 10px',
+    },
   },
-  divider: {
-    height: 3,
-    opacity: 0.1,
-    marginTop: 40,
-    marginBottom: 40,
-    borderRadius: 10,
-    background: theme.palette.primary.light,
+  row: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'center',
+    },
   },
-  button: {
-    color: theme.palette.primary.light,
+  image: {
+    width: 342,
+    height: 500,
+    borderRadius: 0,
+    alignSelf: 'center',
+    marginRight: 20,
+    [theme.breakpoints.down('sm')]: {
+      width: 280,
+      height: '100%',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: 150,
+    },
+    '@media screen and (max-width: 320px)': {
+      width: 100,
+    },
+  },
+
+  desktop: {
+    display: 'none',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
   },
 })
 
-const Data = ({ classes, movie }) =>
+const Data = ({ classes, movie, url }) =>
   <div className={classes.root}>
-    <Grid container justify="flex-end" className={classes.button}>
-      <FavoriteAction />
-    </Grid>
-    <Typography color="inherit" variant="h4">{movie.title}</Typography>
-    <Rating
-      score={movie.vote_count}
-      rating={movie.vote_average}
-      release={movie.release_date}
-    />
-    <div className={classes.overview}>
-      <Divider className={classes.divider} />
-      <Typography color="inherit" style={{ fontSize: '0.84rem' }}>{movie.overview}</Typography>
-      <Divider className={classes.divider} />
+    <Arrows movie={movie} />
+
+    <div className={classes.flex}>
+      <div className={classes.data}>
+        <div className={classes.row}>
+          <Avatar className={classes.image} src={`${url}${movie.poster_path}`} />
+          <div>
+            <Evaluation movie={movie} />
+          </div>
+        </div>
+        <div className={classes.desktop}>
+          <Description movie={movie} />
+        </div>
+      </div>
     </div>
   </div>
-
 
 Data.propTypes = {
   classes: object.isRequired,
   movie: object.isRequired,
+  url: string.isRequired,
 }
 
-
-export default withStyles(styles)(connector(Data))
+export default withStyles(styles)(Data)

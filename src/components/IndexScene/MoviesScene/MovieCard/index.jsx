@@ -12,7 +12,7 @@ const styles = theme => ({
     backgroundSize: '100%',
     backgroundPosition: 'center',
     [theme.breakpoints.down('xs')]: {
-      height: 250,
+      height: 220,
     },
   },
   card: {

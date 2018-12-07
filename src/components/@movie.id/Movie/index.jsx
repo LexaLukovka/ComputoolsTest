@@ -1,21 +1,20 @@
 import React from 'react'
 import { object } from 'prop-types'
-import { Avatar, withStyles } from '@material-ui/core'
-import Data from './Data'
-import Arrows from './Arrows'
+import { withStyles } from '@material-ui/core'
 import connector from '../connector'
+import Data from './Data'
 
-const styles = {
+const styles = () => ({
   root: {
     height: '100%',
   },
   background: {
     zIndex: 1,
     position: 'fixed',
-    filter: 'blur(20px)',
+    filter: 'blur(30px)',
     backgroundSize: '100%',
     backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
+    backgroundRepeat: 'repeat-y',
     backgroundAttachment: 'fixed',
     '-webkit-filter': 'blur(30px)',
   },
@@ -25,20 +24,7 @@ const styles = {
     height: '100%',
     position: 'fixed',
   },
-  flex: {
-    height: '100%',
-    paddingBottom: 220,
-    display: 'flex',
-    alignSelf: 'center',
-    justifyContent: 'space-evenly',
-  },
-  image: {
-    width: 342,
-    height: 500,
-    borderRadius: 0,
-    alignSelf: 'center',
-  },
-}
+})
 
 class Movie extends React.Component {
   componentDidMount() {
@@ -62,11 +48,7 @@ class Movie extends React.Component {
           style={{ width: '100%', height: '100%', backgroundImage: `url(${url}${movie.poster_path})` }}
         />
         <div className={classes.container}>
-          <Arrows movie={movie} />
-          <div className={classes.flex}>
-            <Avatar className={classes.image} src={`${url}${movie.poster_path}`} />
-            <Data movie={movie} />
-          </div>
+          <Data movie={movie} url={url} />
         </div>
       </div>
     )
