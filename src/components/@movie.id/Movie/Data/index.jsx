@@ -11,16 +11,16 @@ const styles = theme => ({
     height: '100%',
   },
   flex: {
-    margin: 20,
     width: '100%',
-    height: '100%',
+    height: 'calc(100vh - 224px)',
     color: 'white',
     display: 'flex',
     justifyContent: 'center',
-    paddingBottom: 260,
+    alignSelf: 'center',
     [theme.breakpoints.down('sm')]: {
       margin: 5,
-      marginTop: 20,
+      paddingTop: 10,
+      height: '100%',
     },
     [theme.breakpoints.down('xs')]: {
       marginTop: 0,

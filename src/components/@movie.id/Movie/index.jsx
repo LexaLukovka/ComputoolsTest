@@ -12,17 +12,17 @@ const styles = () => ({
     zIndex: 1,
     position: 'fixed',
     filter: 'blur(30px)',
-    backgroundSize: '100%',
+    backgroundSize: 'cover',
     backgroundPosition: 'center',
-    backgroundRepeat: 'repeat-y',
+    backgroundRepeat: 'no-repeat',
     backgroundAttachment: 'fixed',
     '-webkit-filter': 'blur(30px)',
   },
   container: {
     zIndex: 2,
     width: '100%',
-    height: '100%',
-    position: 'fixed',
+    position: 'absolute',
+    overflow: 'hidden',
   },
 })
 
@@ -51,7 +51,6 @@ class Movie extends React.Component {
 
 Movie.propTypes = {
   classes: object.isRequired,
-  actions: object.isRequired,
   movie: object.isRequired,
 }
 
