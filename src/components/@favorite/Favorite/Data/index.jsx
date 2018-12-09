@@ -23,6 +23,7 @@ const styles = theme => ({
   title: {
     alignSelf: 'center',
     [theme.breakpoints.down('sm')]: {
+      alignSelf: 'flex-start',
       paddingBottom: 30,
     },
     [theme.breakpoints.down('xs')]: {
