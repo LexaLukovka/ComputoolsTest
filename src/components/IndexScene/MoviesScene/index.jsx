@@ -18,6 +18,7 @@ const styles = theme => ({
     marginBottom: 20,
     color: theme.palette.primary.dark,
     [theme.breakpoints.down('sm')]: {
+      marginLeft: 30,
       marginBottom: 0,
     },
   },

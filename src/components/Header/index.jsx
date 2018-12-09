@@ -81,7 +81,6 @@ class Header extends React.Component {
         url: nextProps.url,
         scene: nextProps.url === '/favorite' ? 'Favorite' : 'My Account',
       })
-
     }
   }
 
@@ -100,7 +99,9 @@ class Header extends React.Component {
       anchorEl: null,
     })
 
-    if (this.state.url !== url) this.props.history.push(url)
+    if (this.props.history.location.pathname.substring(0, 7) === '/movie/' || this.state.url !== url) {
+      this.props.history.push(url)
+    }
   }
 
   render() {
