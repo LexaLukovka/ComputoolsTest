@@ -1,6 +1,6 @@
 import React from 'react'
 import { number, object } from 'prop-types'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { Button, withStyles } from '@material-ui/core'
 import connector from './connector'
 
@@ -45,46 +45,86 @@ const styles = theme => ({
 })
 
 
-const Pages = ({ match, classes, pages }) => {
-  const currentPage = +match.params.page
+class Pages extends React.Component {
+  goToUrl = url => () => {
+    const { history } = this.props
+    history.push(`/movies/${url}`)
+  }
 
-  return (
-    <div className={classes.root}>
-      {currentPage > 1 &&
-      <Link to={`/movies/${1}`}>
-        <Button variant="outlined" className={classes.first}>First</Button>
-      </Link>}
 
-      {currentPage > 1 &&
-      <Link to={`/movies/${currentPage - 1}`}>
-        <Button variant="outlined" color="inherit" className={classes.button}>Prev</Button>
-      </Link>}
-      {currentPage > 1 &&
-      <Link to={`/movies/${currentPage - 1}`}>
-        <Button variant="outlined" className={classes.button}>{currentPage - 1}</Button>
-      </Link>}
+  render() {
+    const { match, classes, pages } = this.props
+    const currentPage = +match.params.page
 
-      <Button color="primary" variant="outlined" className={classes.buttonCurrent}>{currentPage}</Button>
+    return (
+      <div className={classes.root}>
 
-      {currentPage < pages &&
-      <Link to={`/movies/${currentPage + 1}`}>
-        <Button variant="outlined" className={classes.button}>{currentPage + 1}</Button>
-      </Link>}
-      {currentPage < pages &&
-      <Link to={`/movies/${currentPage + 1}`}>
-        <Button variant="outlined" color="inherit" className={classes.button}>Next</Button>
-      </Link>}
+        <Button
+          variant="outlined"
+          className={classes.first}
+          disabled={currentPage <= 1}
+          onClick={this.goToUrl(1)}
+        >
+          First
+        </Button>
 
-      {currentPage < pages &&
-      <Link to={`/movies/${pages}`}>
-        <Button variant="outlined" className={classes.last}>Last</Button>
-      </Link>}
-    </div>
-  )
+        <Button
+          color="inherit"
+          variant="outlined"
+          className={classes.button}
+          disabled={currentPage <= 1}
+          onClick={this.goToUrl(currentPage - 1)}
+        >
+          Prev
+        </Button>
+
+        {currentPage > 1 &&
+        <Button
+          variant="outlined"
+          className={classes.button}
+          onClick={this.goToUrl(currentPage - 1)}
+        >
+          {currentPage - 1}
+        </Button>}
+
+        <Button color="primary" variant="outlined" className={classes.buttonCurrent}>{currentPage}</Button>
+
+        {currentPage < pages &&
+        <Button
+          variant="outlined"
+          className={classes.button}
+          onClick={this.goToUrl(currentPage + 1)}
+        >
+          {currentPage + 1}
+        </Button>}
+        {currentPage < pages &&
+        <Button
+          variant="outlined"
+          color="inherit"
+          className={classes.button}
+          onClick={this.goToUrl(currentPage + 1)}
+        >
+          Next
+        </Button>}
+
+        {currentPage < pages &&
+        <Button
+          variant="outlined"
+          className={classes.last}
+          onClick={this.goToUrl(pages)}
+        >
+          Last
+        </Button>}
+
+      </div>
+    )
+  }
 }
+
 
 Pages.propTypes = {
   classes: object.isRequired,
+  history: object.isRequired,
   match: object.isRequired,
   pages: number.isRequired,
 }
