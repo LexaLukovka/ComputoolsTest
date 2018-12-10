@@ -153,7 +153,11 @@ Header.propTypes = {
   classes: object.isRequired,
   history: object.isRequired,
   header: object.isRequired,
-  url: string.isRequired,
+  url: string,
+}
+
+Header.defaultProps = {
+  url: null,
 }
 
 export default withStyles(styles)(connector(withRouter(Header)))
