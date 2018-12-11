@@ -2,7 +2,7 @@ import React from 'react'
 import { object } from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Button, Typography, withStyles } from '@material-ui/core'
-import connector from '../../connector'
+import { inject, observer } from 'mobx-react'
 
 const styles = theme => ({
   root: {
@@ -43,10 +43,13 @@ const styles = theme => ({
   },
 })
 
-class Data extends React.Component {
+@inject('moviesStore')
+@withStyles(styles)
+@observer
+export default class Data extends React.Component {
   handleFavorite = movie => {
-    const { actions } = this.props
-    actions.movies.favorite(movie)
+    const { moviesStore } = this.props
+    moviesStore.changeFavorite(movie)
   }
 
   render() {
@@ -70,8 +73,7 @@ class Data extends React.Component {
 
 Data.propTypes = {
   classes: object.isRequired,
-  actions: object.isRequired,
+  moviesStore: object,
   movie: object.isRequired,
 }
 
-export default withStyles(styles)(connector(Data))

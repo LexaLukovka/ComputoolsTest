@@ -1,8 +1,9 @@
 import React from 'react'
-import { number, object } from 'prop-types'
+import { object } from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { Button, withStyles } from '@material-ui/core'
-import connector from './connector'
+
+import { inject, observer } from 'mobx-react'
 
 const styles = theme => ({
   root: {
@@ -45,7 +46,11 @@ const styles = theme => ({
 })
 
 
-class Pages extends React.Component {
+@inject('moviesStore')
+@withStyles(styles)
+@withRouter
+@observer
+export default class Pages extends React.Component {
   goToUrl = url => () => {
     const { history } = this.props
     history.push(`/movies/${url}`)
@@ -53,7 +58,7 @@ class Pages extends React.Component {
 
 
   render() {
-    const { match, classes, pages } = this.props
+    const { match, classes, moviesStore: { pages } } = this.props
     const currentPage = +match.params.page
 
     return (
@@ -126,7 +131,5 @@ Pages.propTypes = {
   classes: object.isRequired,
   history: object.isRequired,
   match: object.isRequired,
-  pages: number.isRequired,
+  moviesStore: object,
 }
-
-export default withStyles(styles)(connector(withRouter(Pages)))

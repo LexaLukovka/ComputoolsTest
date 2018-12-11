@@ -4,7 +4,7 @@ import { IconButton, withStyles } from '@material-ui/core'
 import StarIcon from 'mdi-react/StarIcon'
 import StarBorderIcon from 'mdi-react/StarBorderIcon'
 import isEmpty from 'lodash/isEmpty'
-import connector from '../connector'
+import { inject, observer } from 'mobx-react'
 
 const styles = {
   icon: {
@@ -16,14 +16,17 @@ const styles = {
   },
 }
 
-class FavoriteIconAction extends React.Component {
+@inject('moviesStore')
+@withStyles(styles)
+@observer
+export default class FavoriteIconAction extends React.Component {
   handleFavorite = movie => {
-    const { actions } = this.props
-    actions.movies.favorite(movie)
+    const { moviesStore } = this.props
+    moviesStore.changeFavorite(movie)
   }
 
   render() {
-    const { classes, favorite, movie } = this.props
+    const { classes, moviesStore: { favorite, current: movie } } = this.props
 
     return !isEmpty(favorite) ? (favorite.findIndex(f => f.id === movie.id) < 0 ?
       <IconButton onClick={() => this.handleFavorite(movie)}>
@@ -42,9 +45,6 @@ class FavoriteIconAction extends React.Component {
 
 FavoriteIconAction.propTypes = {
   classes: object.isRequired,
-  actions: object.isRequired,
-  movie: object.isRequired,
-  favorite: array.isRequired,
+  moviesStore: object,
 }
 
-export default withStyles(styles)(connector(FavoriteIconAction))

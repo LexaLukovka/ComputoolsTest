@@ -4,7 +4,7 @@ import { withRouter } from 'react-router'
 import { Typography, withStyles } from '@material-ui/core'
 import KeyboardArrowLeftIcon from 'mdi-react/KeyboardArrowLeftIcon'
 import KeyboardArrowRightIcon from 'mdi-react/KeyboardArrowRightIcon'
-import connector from './connector'
+import { inject, observer } from 'mobx-react'
 
 
 const styles = theme => ({
@@ -50,7 +50,11 @@ const styles = theme => ({
   },
 })
 
-class Arrows extends React.Component {
+@inject('moviesStore')
+@withStyles(styles)
+@withRouter
+@observer
+export default class Arrows extends React.Component {
   handleBack = () => {
     const { url, history } = this.props
     history.push(url)
@@ -63,7 +67,7 @@ class Arrows extends React.Component {
   }
 
   render() {
-    const { classes, moviesStore, favorite, movie, url } = this.props
+    const { classes, moviesStore: { movies: moviesStore, favorite, url }, movie } = this.props
     let movies
     switch (url) {
       case '/favorite': {
@@ -103,10 +107,7 @@ class Arrows extends React.Component {
 Arrows.propTypes = {
   classes: object.isRequired,
   history: object.isRequired,
-  moviesStore: object.isRequired,
-  favorite: array.isRequired,
+  moviesStore: object,
   movie: object.isRequired,
-  url: string.isRequired,
 }
 
-export default withStyles(styles)(connector(withRouter(Arrows)))

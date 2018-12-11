@@ -4,7 +4,7 @@ import { Typography, withStyles } from '@material-ui/core'
 import Favorite from 'components/@favorite/Favorite'
 import NotFound from 'components/NotFound'
 import isEmpty from 'lodash/isEmpty'
-import connector from './connector'
+import { inject, observer } from 'mobx-react'
 
 const styles = theme => ({
   root: {
@@ -28,14 +28,17 @@ const styles = theme => ({
   },
 })
 
-class FavoriteScene extends React.Component {
+@inject('moviesStore')
+@withStyles(styles)
+@observer
+export default class FavoriteScene extends React.Component {
   componentDidMount() {
-    const { actions, match } = this.props
-    actions.movies.url(match.url)
+    const { moviesStore, match } = this.props
+    moviesStore.path(match.url)
   }
 
   render() {
-    const { classes, favorite } = this.props
+    const { classes, moviesStore: { favorite } } = this.props
     if (isEmpty(favorite)) return <NotFound />
 
     return <div className={classes.root}>
@@ -49,10 +52,7 @@ class FavoriteScene extends React.Component {
 
 
 FavoriteScene.propTypes = {
-  actions: object.isRequired,
+  moviesStore: object,
   match: object.isRequired,
   classes: object.isRequired,
-  favorite: array.isRequired,
 }
-
-export default withStyles(styles)(connector(FavoriteScene))

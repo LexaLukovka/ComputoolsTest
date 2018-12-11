@@ -18,7 +18,7 @@ const LayoutScene = () =>
           <Route exact path="/favorite" component={FavoriteScene} />
           <Route exact path="/movies/:page" component={IndexScene} />
           <Route exact path="/movie/:id" component={MovieScene} />
-          <Redirect to={`/movies/${1}`} />
+          <Redirect to="/movies/1" />
         </Switch>
       </Container>
     </div>

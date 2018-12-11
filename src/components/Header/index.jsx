@@ -1,13 +1,12 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
 import React from 'react'
-import { object, string } from 'prop-types'
+import { bool, object, shape, string } from 'prop-types'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import { AppBar, Button, Menu, MenuItem, Toolbar, Typography, withStyles } from '@material-ui/core'
 import KeyboardArrowDownIcon from 'mdi-react/KeyboardArrowDownIcon'
 import StarsIcon from 'mdi-react/StarsIcon'
-import shortTitle from 'utils/shortTitle'
-import connector from './connector'
+import { inject, observer } from 'mobx-react'
 
 
 const styles = theme => ({
@@ -68,18 +67,23 @@ const styles = theme => ({
   },
 })
 
-class Header extends React.Component {
+
+@inject('moviesStore')
+@observer
+@withStyles(styles)
+@withRouter
+export default class Header extends React.Component {
   state = {
     anchorEl: null,
-    url: this.props.url,
-    scene: this.props.url === '/favorite' ? 'Favorite' : 'My Account',
+    url: this.props.moviesStore && this.props.moviesStore.url,
+    scene: this.props.moviesStore && this.props.moviesStore.url === '/favorite' ? 'Favorite' : 'My Account',
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
-    if (nextProps.url !== this.props.url) {
+    if (nextProps.moviesStore.url !== this.props.moviesStore.url) {
       this.setState({
-        url: nextProps.url,
-        scene: nextProps.url === '/favorite' ? 'Favorite' : 'My Account',
+        url: nextProps.moviesStore.url,
+        scene: nextProps.moviesStore.url === '/favorite' ? 'Favorite' : 'My Account',
       })
     }
   }
@@ -105,7 +109,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { classes, header } = this.props
+    const { classes } = this.props
     const { anchorEl, scene } = this.state
 
     return (
@@ -114,9 +118,9 @@ class Header extends React.Component {
           <Toolbar className="flex">
 
             <div className={classes.flex}>
-              <Link to={header.link} style={{ alignSelf: 'center' }}><StarsIcon className={classes.icon} /></Link>
+              <Link to="/" style={{ alignSelf: 'center' }}><StarsIcon className={classes.icon} /></Link>
               <Typography variant="h5" color="inherit" className={classes.title}>
-                <Link to={header.link}>{shortTitle(header.title)}</Link>
+                <Link to="/">Movies</Link>
               </Typography>
             </div>
 
@@ -152,12 +156,7 @@ class Header extends React.Component {
 Header.propTypes = {
   classes: object.isRequired,
   history: object.isRequired,
-  header: object.isRequired,
-  url: string,
+  moviesStore: shape({
+    url: string,
+  }),
 }
-
-Header.defaultProps = {
-  url: null,
-}
-
-export default withStyles(styles)(connector(withRouter(Header)))

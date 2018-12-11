@@ -2,16 +2,19 @@ import React from 'react'
 import { array, object } from 'prop-types'
 import { Button } from '@material-ui/core'
 import isEmpty from 'lodash/isEmpty'
-import connector from '../connector'
+import { inject, observer } from 'mobx-react'
 
-class FavoriteButtonAction extends React.Component {
+
+@inject('moviesStore')
+@observer
+export default class FavoriteButtonAction extends React.Component {
   handleFavorite = movie => {
-    const { actions } = this.props
-    actions.movies.favorite(movie)
+    const { moviesStore } = this.props
+    moviesStore.changeFavorite(movie)
   }
 
   render() {
-    const { favorite, movie } = this.props
+    const { moviesStore: { favorite, current: movie } } = this.props
 
     return !isEmpty(favorite) ? (favorite.findIndex(f => f.id === movie.id) < 0 ?
       <Button color="inherit" variant="outlined" onClick={() => this.handleFavorite(movie)}>Add favorite</Button>
@@ -25,9 +28,5 @@ class FavoriteButtonAction extends React.Component {
 }
 
 FavoriteButtonAction.propTypes = {
-  actions: object.isRequired,
-  movie: object.isRequired,
-  favorite: array.isRequired,
+  moviesStore: object,
 }
-
-export default connector(FavoriteButtonAction)

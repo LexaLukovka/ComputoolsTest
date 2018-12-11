@@ -1,11 +1,24 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
+
+import { configure } from 'mobx';
+import { Provider } from 'mobx-react'
+
 import { AppContainer } from 'react-hot-loader'
 import { BrowserRouter as Router } from 'react-router-dom'
-import store from './store'
+
+import moviesStore from 'mobX/moviesStore'
+
 import LayoutScene from 'components/LayoutScene'
 
+
+configure({
+  enforceActions: true
+});
+
+const stores = {
+  moviesStore,
+}
 
 const render = Component => {
   ReactDOM.render(
@@ -17,7 +30,7 @@ const render = Component => {
 }
 
 render(() =>
-  <Provider store={store}>
+  <Provider {...stores}>
     <Router>
       <LayoutScene />
     </Router>

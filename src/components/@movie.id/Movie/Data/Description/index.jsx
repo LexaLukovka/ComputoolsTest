@@ -1,7 +1,6 @@
 import React from 'react'
 import { object } from 'prop-types'
 import { Divider, Typography, withStyles } from '@material-ui/core'
-import connector from '../../../connector'
 
 const styles = theme => ({
   root: {
@@ -64,4 +63,4 @@ Description.propTypes = {
 }
 
 
-export default withStyles(styles)(connector(Description))
+export default withStyles(styles)(Description)

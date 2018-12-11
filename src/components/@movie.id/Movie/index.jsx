@@ -1,7 +1,6 @@
 import React from 'react'
 import { object } from 'prop-types'
 import { withStyles } from '@material-ui/core'
-import connector from '../connector'
 import Data from './Data'
 
 const styles = () => ({
@@ -26,7 +25,8 @@ const styles = () => ({
   },
 })
 
-class Movie extends React.Component {
+@withStyles(styles)
+export default class Movie extends React.Component {
   componentDidMount() {
     const { movie } = this.props
     document.title = movie.title
@@ -54,4 +54,3 @@ Movie.propTypes = {
   movie: object.isRequired,
 }
 
-export default withStyles(styles)(connector(Movie))

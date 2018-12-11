@@ -1,42 +1,46 @@
 import React from 'react'
-import { object } from 'prop-types'
-import connector from './connector'
+import { bool, object, shape } from 'prop-types'
 import Loading from '../Loading'
 import MoviesScene from './MoviesScene'
 import NotFound from 'components/NotFound'
 import isEmpty from 'lodash/isEmpty'
 
-class IndexScene extends React.Component {
+import { inject, observer } from 'mobx-react'
+
+@inject('moviesStore')
+@observer
+export default class IndexScene extends React.Component {
   componentDidMount() {
-    const { actions, match } = this.props
+    const { moviesStore, match } = this.props
+    console.log(moviesStore)
     document.title = 'Computools'
-    actions.movies.load(match.params.page)
-    actions.movies.url(match.url)
+    moviesStore.load(match.params.page)
+    moviesStore.path(match.url)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const { actions, match } = this.props
+    const { moviesStore, match } = this.props
     const { page } = match.params
     if (prevProps.match.params.page !== page) {
-      actions.movies.load(page)
-      actions.movies.url(match.url)
+      moviesStore.load(page)
+      moviesStore.path(match.url)
     }
   }
 
   render() {
-    const { movies } = this.props
+    const { moviesStore: { loading, movies } } = this.props
 
-    if (movies.loading) return <Loading />
-    if (isEmpty(movies.movies.results)) return <NotFound />
+    if (loading || loading === undefined) return <Loading />
+    if (isEmpty(movies.results)) return <NotFound />
 
-    return <MoviesScene movies={movies.movies.results} />
+    return <MoviesScene movies={movies.results} />
   }
 }
 
 IndexScene.propTypes = {
-  actions: object.isRequired,
   match: object.isRequired,
-  movies: object.isRequired,
+  moviesStore: shape({
+    loading: bool,
+    movies: object,
+  }),
 }
-
-export default connector(IndexScene)
