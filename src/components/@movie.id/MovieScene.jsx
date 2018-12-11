@@ -39,7 +39,7 @@ export default class MovieScene extends React.Component {
 }
 
 MovieScene.propTypes = {
-  classes: object.isRequired,
+  classes: object,
   moviesStore: object,
-  match: object.isRequired,
+  match: object,
 }

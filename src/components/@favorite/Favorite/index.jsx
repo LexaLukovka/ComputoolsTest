@@ -37,8 +37,8 @@ const Favorite = ({ classes, movie }) =>
   </div>
 
 Favorite.propTypes = {
-  classes: object.isRequired,
-  movie: object.isRequired,
+  classes: object,
+  movie: object,
 }
 
 export default withStyles(styles)(Favorite)

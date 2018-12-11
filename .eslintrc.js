@@ -26,6 +26,7 @@ module.exports = {
     'no-unused-vars': 0,
     'camelcase': 0,
     // disable rules from base configurations
+    "react/require-default-props": 0,
     'jsx-a11y/tabindex-no-positive': 'off',
     'react/jsx-wrap-multilines': 0,
     'react/jsx-curly-spacing': [2, { 'when': 'never', 'allowMultiline': false }],

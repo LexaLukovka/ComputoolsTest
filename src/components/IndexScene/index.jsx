@@ -12,7 +12,6 @@ import { inject, observer } from 'mobx-react'
 export default class IndexScene extends React.Component {
   componentDidMount() {
     const { moviesStore, match } = this.props
-    console.log(moviesStore)
     document.title = 'Computools'
     moviesStore.load(match.params.page)
     moviesStore.path(match.url)

@@ -56,7 +56,7 @@ const styles = theme => ({
 @observer
 export default class Arrows extends React.Component {
   handleBack = () => {
-    const { url, history } = this.props
+    const { moviesStore: { url }, history } = this.props
     history.push(url)
   }
 
@@ -105,9 +105,9 @@ export default class Arrows extends React.Component {
 
 
 Arrows.propTypes = {
-  classes: object.isRequired,
-  history: object.isRequired,
+  classes: object,
+  history: object,
   moviesStore: object,
-  movie: object.isRequired,
+  movie: object,
 }
 

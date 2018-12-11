@@ -44,7 +44,7 @@ export default class FavoriteIconAction extends React.Component {
 }
 
 FavoriteIconAction.propTypes = {
-  classes: object.isRequired,
+  classes: object,
   moviesStore: object,
 }
 

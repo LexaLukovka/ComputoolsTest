@@ -53,6 +53,6 @@ export default class FavoriteScene extends React.Component {
 
 FavoriteScene.propTypes = {
   moviesStore: object,
-  match: object.isRequired,
-  classes: object.isRequired,
+  match: object,
+  classes: object,
 }

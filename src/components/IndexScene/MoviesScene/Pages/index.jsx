@@ -128,8 +128,8 @@ export default class Pages extends React.Component {
 
 
 Pages.propTypes = {
-  classes: object.isRequired,
-  history: object.isRequired,
-  match: object.isRequired,
+  classes: object,
+  history: object,
+  match: object,
   moviesStore: object,
 }

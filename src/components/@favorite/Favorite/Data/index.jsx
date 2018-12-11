@@ -72,7 +72,7 @@ export default class Data extends React.Component {
 
 
 Data.propTypes = {
-  classes: object.isRequired,
+  classes: object,
   moviesStore: object,
   movie: object.isRequired,
 }

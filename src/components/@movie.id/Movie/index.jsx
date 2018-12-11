@@ -50,7 +50,7 @@ export default class Movie extends React.Component {
 }
 
 Movie.propTypes = {
-  classes: object.isRequired,
+  classes: object,
   movie: object.isRequired,
 }
 

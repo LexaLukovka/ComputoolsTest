@@ -154,8 +154,8 @@ export default class Header extends React.Component {
 }
 
 Header.propTypes = {
-  classes: object.isRequired,
-  history: object.isRequired,
+  classes: object,
+  history: object,
   moviesStore: shape({
     url: string,
   }),
